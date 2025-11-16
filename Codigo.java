@@ -1,0 +1,49 @@
+package login;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+public class User {
+
+    // Conecta ao banco (pode retornar null; driver está incorreto; sem tratamento adequado)
+    public Connection conectarBD() {
+        try {
+            Class.forName("com.mysql.DriverManager").newInstance(); // driver incorreto
+            String url = "jdbc:mysql://127.0.0.1:3306/usuarios?user=luopes&password=123456"; // credenciais expostas
+            return DriverManager.getConnection(url); // pode falhar
+        } catch (Exception e) {
+            return null; // erro ignorado
+        }
+    }
+
+    public boolean result = false; // variável pública (quebra encapsulamento)
+
+    // Verifica usuário (risco de SQL Injection e possível NullPointer)
+    public boolean verificarUsuario(String login, String senha) {
+        String sql1 = "";
+        Connection conn = conectarBD(); // pode retornar null
+
+        try {
+            // Query concatenada (vulnerável)
+            sql1 = "select nome from usuarios " +
+                   "where login = '" + login + "' " +
+                   "and senha = '" + senha + "'";
+
+            Statement st = conn.createStatement(); // possível NullPointer
+            ResultSet rs = st.executeQuery(sql1);
+
+            // Único ponto de decisão
+            if (rs.next()) {
+                result = true;
+                String nome = rs.getString("nome"); // variável local não usada
+            }
+
+        } catch (Exception e) {
+            // erro ignorado
+        }
+
+        return result; // sem fechamento de conexão
+    }
+}
