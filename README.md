@@ -1,52 +1,55 @@
-# Caixa-Branca---AF
+# Atividade Individual Caixa-Branca---AF
+<h1> Nome: Nicolas Beloto Armenio</h1>
+<h1>RA: 247563</h1>
 
 <h2>NOTAÇÃO DE GRAFO DE FLUXO</h2>
-<img width="378" height="551" alt="image" src="https://github.com/user-attachments/assets/2c1cc15a-4ecd-4605-bfd2-5d84d4c13871" />
-<p>
-Nó 1 (Início):
-Início da execução do método verificarUsuario(). Declaração das variáveis iniciais.
+<h3>CONECTAR BD()</h3>
+<img width="380" height="160" alt="image" src="https://github.com/user-attachments/assets/e0691309-58bf-48a1-b9fa-57af158813b3" />
+<p>N1 – Cria conexão</p>
+<p>N2 – Tenta conectar</p>
+<p>N3 – Trata erro</p>
+<p>N4 – Retorna conexão</p>
 
-Nó 2 (ConectarBD):
-Chamada do método conectarBD() para tentar estabelecer a conexão com o banco.
-
-Nó 3 (Montagem da SQL):
-Montagem da instrução SQL de consulta, concatenando login e senha informados.
-
-Nó 4 (Execução do Try):
-Entrada no bloco try, tentativa de criar o Statement e executar executeQuery(sql).
-
-Nó 5 (Exceção / Tratamento de Erro):
-Fluxo seguido caso ocorra alguma exceção no bloco try (ex.: conexão nula, erro SQL).
-
-Nó 6 (Decisão – rs.next() = true):
-Resultado da execução do SELECT retornou uma linha válida. Usuário encontrado.
-
-Nó 7 (Decisão – rs.next() = false):
-O SELECT não retornou nenhum registro. Usuário não encontrado.
-
-Nó 8 (Retorno – false por exceção):
-Retorno do método indicando falha, devido a uma exceção ocorrida no processo.
-
-Nó 9 (Retorno – true):
-Retorno positivo, indicando que as credenciais existem no banco (usuário autenticado).
-
-Nó 10 (Retorno – false por usuário não encontrado):
-Retorno negativo, indicando que a consulta executou normalmente, mas não encontrou o usuário.
-</p>
 <h2>COMPLEXIDADE CICLOMÁTICA</h2> 
-N = 8 | E = 9 | P = 1
+<p></p>Fórmula usada: M = E − N + 2P, onde P = número de componentes conectados (P = 1).</p>
 
-M = 9 - 8 + 2 * 1
+<p>Número de nós (N)</p>
+<p>Número de arestas (E)</p>
 
-M = 3 
+<p>M = E - N + 2p</p>
+<p>M = 4 - 4 + 2.1</p>
+<p>M = 2</p>
 
-Complexidade Ciclomática = 2 
 
 <h2>CAMINHO BÁSICO</h2>
 
-Caminho 1 — Conexão OK e usuário encontrado -> 1 → 2 → 3 → 4 → rs.next()==true → return true 
+<p>1) --> 1, 2, 3, 4</p>
+<p>2) -->  1, 2, 4</p>
 
-Caminho 2 — Conexão OK e usuário NÃO encontrado -> 1 → 2 → 3 → 4 → rs.next()==false → return false
+<h2>NOTAÇÃO DE GRAFO DE FLUXO</h2>
+<h3>VERIFICAR USUARIO()</h3>
+<img width="558" height="269" alt="image" src="https://github.com/user-attachments/assets/524c1e67-3164-4feb-af9a-c8f9809e53be" />
 
-Caminho 3 — Erro / exceção / NPE -> 1 → 2 (conn=null) → 3 → 4 → exceção → return false
+<p>N1 – Cria conexão</p>
+<p>N2 – Monta a query</p>
+<p>N3 – Tenta executar (try)</p>
+<p>N4 – Verifica se usuário existe</p>
+<p>N5 – Lê o nome</p>
+<p>N6 – Trata erro</p>
+<p>N7 – Retorna o resultado</p>
 
+<h2>COMPLEXIDADE CICLOMÁTICA</h2> 
+<p></p>Fórmula usada: M = E − N + 2P, onde P = número de componentes conectados (P = 1).</p>
+
+<p>Número de nós (N)</p>
+<p>Número de arestas (E)</p>
+
+<p>M = E - N + 2p</p>
+<p>M = 8 - 7 + 2</p>
+<p>M = 3</p>
+
+<h2>CAMINHO BÁSICO</h2> 
+
+1) --> 1, 2, 3, 6, 7
+2) --> 1, 2, 3, 4, 7
+3) --> 1, 2, 3, 4, 5, 7
